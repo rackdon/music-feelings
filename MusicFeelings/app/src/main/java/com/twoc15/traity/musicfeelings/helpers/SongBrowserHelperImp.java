@@ -39,7 +39,7 @@ public class SongBrowserHelperImp implements SongBrowserHelper {
 
     @Override
     public void setPlayList(String tag, ArrayList<String> songsList) {
-        
+
     }
 
     private void scanDirectory(File directory) {
