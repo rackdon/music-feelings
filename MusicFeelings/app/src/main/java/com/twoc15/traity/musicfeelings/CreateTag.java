@@ -4,14 +4,30 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class CreateTag extends ActionBarActivity {
+    private EditText edTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tag);
+        edTag = (EditText) findViewById(R.id.edTag);
+    }
+
+    public void addSongElement (View view) {
+
+    }
+
+    private String getTagName() {
+        return edTag.getText().toString();
+    }
+
+    private void setSongElement (String song) {
+
     }
 
 
