@@ -7,9 +7,6 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by omar on 18/04/15.
- */
 public class SongBrowserHelperImp implements SongBrowserHelper {
 
     final String MEDIA_PATH = Environment.getExternalStorageDirectory().getPath() + "/";
