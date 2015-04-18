@@ -1,17 +1,37 @@
 package com.twoc15.traity.musicfeelings;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends ActionBarActivity {
+    private Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+
+    public void goCreateTag (View view) {
+        intent = new Intent(this, CreateTag.class);
+        startActivity(intent);
+    }
+
+    public void goModifyTag (View view) {
+        intent = new Intent(this, ModifyTag.class);
+        startActivity(intent);
+    }
+
+    public void goPlayMusic (View view) {
+        intent = new Intent(this, PlayMusic.class);
+        startActivity(intent);
     }
 
 
