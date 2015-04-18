@@ -7,4 +7,6 @@ public interface SongBrowserHelper {
 
     public abstract ArrayList<HashMap<String, String>> getPlayList(String tag);
 
+    public abstract void setPlayList(String tag, ArrayList<String> songsList);
+
 }

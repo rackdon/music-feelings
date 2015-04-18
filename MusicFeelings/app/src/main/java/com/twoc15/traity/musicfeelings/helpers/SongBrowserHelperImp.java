@@ -37,6 +37,11 @@ public class SongBrowserHelperImp implements SongBrowserHelper {
         return songsList;
     }
 
+    @Override
+    public void setPlayList(String tag, ArrayList<String> songsList) {
+        
+    }
+
     private void scanDirectory(File directory) {
         if (directory != null) {
             File[] listFiles = directory.listFiles();
