@@ -40,7 +40,8 @@ public class DirectoryChooserDialog
     private List<String> m_subdirs = null;
     private ChosenDirectoryListener m_chosenDirectoryListener = null;
     private ArrayAdapter<String> m_listAdapter = null;
-    private String mp3Pattern = ".mp3";
+    private String mp3minusPattern = ".mp3";
+    private String mp3mayusPattern = ".MP3";
 
     //////////////////////////////////////////////////////
     // Callback interface for selected directory
@@ -135,7 +136,9 @@ public class DirectoryChooserDialog
             {
                 File selectedFile = new File(m_dir);
                 // Current directory chosen
-                if (m_chosenDirectoryListener != null && selectedFile.getName().endsWith(".pdf"))
+                if (m_chosenDirectoryListener != null &&
+                        (selectedFile.getName().endsWith(mp3minusPattern)
+                                || selectedFile.getName().endsWith(mp3mayusPattern)))
                 {
                     // Call registered listener supplied with the chosen directory
                     m_chosenDirectoryListener.onChosenDir(m_dir, selectedFile);
