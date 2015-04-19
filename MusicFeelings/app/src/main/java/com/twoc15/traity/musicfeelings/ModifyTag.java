@@ -32,6 +32,7 @@ public class ModifyTag extends ActionBarActivity
     private ArrayList<HashMap<String, String>> thePlayList;
     private List<String> songNames = new ArrayList<String>();
     private List<String> songPaths = new ArrayList<String>();
+    private String listTag = null;
 
 
 
@@ -47,7 +48,8 @@ public class ModifyTag extends ActionBarActivity
         tagsSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                thePlayList = new SongBrowserHelperImp().getPlayList((String)listTags.get(position));
+                listTag = (String) listTags.get(position);
+                thePlayList = new SongBrowserHelperImp().getPlayList(listTag);
                 for (HashMap<String,String> name : thePlayList) {
                     songNames.add(name.get("songTitle"));
                     songPaths.add(name.get("songPath"));
@@ -60,22 +62,21 @@ public class ModifyTag extends ActionBarActivity
             }
         });
 
-       
+
 
     }
 
     public void addSongElement (View view) {
-        String tag = "";
         directoryChooserDialog.chooseDirectory();
 
     }
 
     public void confirm (View view) {
-
+        new SongBrowserHelperImp().setPlayList(listTag, songPaths);
     }
 
     public void onChosenDir(String path, File selectedFile) {
-        filePath = path;
+        songPaths.add(path);
         File selectedSong = selectedFile;
         songNames.add(selectedSong.getName());
         listSongs.setAdapter(songsAdapter);

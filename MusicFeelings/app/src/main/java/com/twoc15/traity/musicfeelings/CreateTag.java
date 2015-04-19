@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.twoc15.traity.musicfeelings.adapters.TagsAdapter;
 import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
+import com.twoc15.traity.musicfeelings.helpers.SongBrowserHelperImp;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class CreateTag extends ActionBarActivity
     private TagsAdapter adapter = null;
     private File selectedSong = null;
     private List<String> songNames = new ArrayList<String>();
+    private List<String> songPaths = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,13 @@ public class CreateTag extends ActionBarActivity
     }
 
     public void addSongElement (View view) {
-        String tag = getTagName();
         directoryChooserDialog.chooseDirectory();
     }
 
 
     public void confirm (View view) {
-
+        String tag = getTagName();
+        new SongBrowserHelperImp().setPlayList(tag, songPaths);
     }
 
     private String getTagName() {
@@ -52,7 +54,7 @@ public class CreateTag extends ActionBarActivity
 
 
     public void onChosenDir(String path, File selectedFile) {
-        filePath = path;
+        songPaths.add(path);
         selectedSong = selectedFile;
         songNames.add(selectedSong.getName());
         listSongs.setAdapter(adapter);

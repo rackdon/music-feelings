@@ -13,6 +13,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class SongBrowserHelperImp implements SongBrowserHelper {
 
@@ -41,7 +42,7 @@ public class SongBrowserHelperImp implements SongBrowserHelper {
     }
 
     @Override
-    public void setPlayList(String tag, ArrayList<String> songsList) {
+    public void setPlayList(String tag, List<String> songsList) {
 
         try {
             for(String songSingle : songsList){
