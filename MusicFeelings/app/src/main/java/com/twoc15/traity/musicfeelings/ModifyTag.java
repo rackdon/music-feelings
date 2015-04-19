@@ -11,7 +11,7 @@ import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
 
 
 public class ModifyTag extends ActionBarActivity
-        implements DirectoryChooserDialog.ChosenDirectoryListener{
+        {
 
     private DirectoryChooserDialog directoryChooserDialog;
     private String filePath = "";

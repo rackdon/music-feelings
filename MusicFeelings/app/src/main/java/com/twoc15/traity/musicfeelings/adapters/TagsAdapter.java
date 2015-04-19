@@ -12,15 +12,17 @@ import android.widget.TextView;
 
 import com.twoc15.traity.musicfeelings.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TagsAdapter extends ArrayAdapter<String> {
 
     Context mContext;
     int layoutResourceId;
-    String[] data = null;
+    List<String> data = null;
     boolean showDeleteButton;
-    DeleteButtonFunctionality deleteButtonFunctionality = null;
 
-    public TagsAdapter(Context mContext, int layoutResourceId, String[] data, boolean showDeleteButton) {
+    public TagsAdapter(Context mContext, int layoutResourceId, List<String> data, boolean showDeleteButton) {
 
         super(mContext, layoutResourceId, data);
 
@@ -31,9 +33,6 @@ public class TagsAdapter extends ArrayAdapter<String> {
 
     }
 
-    public interface DeleteButtonFunctionality {
-        public void deleteRow();
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -45,12 +44,11 @@ public class TagsAdapter extends ArrayAdapter<String> {
             convertView = infalInflater.inflate(layoutResourceId, parent, false);
         }
 
-        String objectItem = data[position];
+        String objectItem = data.get(position);
 
         TextView textViewItem = (TextView) convertView.findViewById(R.id.textTag);
         textViewItem.setText(objectItem);
         if(showDeleteButton) {
-
             showDeleteButton(convertView, objectItem);
         }
 
@@ -59,12 +57,12 @@ public class TagsAdapter extends ArrayAdapter<String> {
     }
 
     public void showDeleteButton(View convertView, final String item){
-        Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
+        final Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                deleteButton.setVisibility(View.VISIBLE);
                 remove(item);
-//                deleteButtonFunctionality.deleteRow();
             }
         });
     }

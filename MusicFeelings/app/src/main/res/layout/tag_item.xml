@@ -1,45 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:id="@+id/LinearLayoutTags"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="left">
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"/>
 
-        <TextView
-            android:id="@+id/textTag"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="right">
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:gravity="center"
-            android:textColor="@color/red"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_gravity="right"
-            android:layout_marginRight="30dp"
-            android:background="?android:attr/selectableItemBackground"/>
-
-    </LinearLayout>
+        android:layout_gravity="right"
+        android:layout_marginRight="30dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="@color/red"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:enabled="false"/>
 
 
 </LinearLayout>

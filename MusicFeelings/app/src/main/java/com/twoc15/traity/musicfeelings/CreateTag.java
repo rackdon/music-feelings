@@ -13,6 +13,8 @@ import com.twoc15.traity.musicfeelings.adapters.TagsAdapter;
 import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CreateTag extends ActionBarActivity
@@ -24,6 +26,7 @@ public class CreateTag extends ActionBarActivity
     private ListView listView = null;
     private TagsAdapter adapter = null;
     private File selectedSong = null;
+    private List<String> songNames = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +35,13 @@ public class CreateTag extends ActionBarActivity
         edTag = (EditText) findViewById(R.id.edTag);
         directoryChooserDialog = new DirectoryChooserDialog(this,this);
         listView = (ListView) findViewById(R.id.listView);
+        adapter = new  TagsAdapter(getApplicationContext() , R.layout.tag_item, songNames, true);
     }
 
     public void addSongElement (View view) {
         String tag = getTagName();
         directoryChooserDialog.chooseDirectory();
-        String[] songName = {selectedSong.getName()};
-        adapter = new  TagsAdapter(getApplicationContext() , R.layout.tag_item, songName, true);
-        listView.setAdapter(adapter);
-        adapter.setNotifyOnChange(true);
+
 
     }
 
@@ -53,7 +54,9 @@ public class CreateTag extends ActionBarActivity
     public void onChosenDir(String path, File selectedFile) {
         filePath = path;
         selectedSong = selectedFile;
-        Log.wtf("Create Path", filePath);
+        songNames.add(selectedSong.getName());
+        listView.setAdapter(adapter);
+        adapter.setNotifyOnChange(true);
     }
 
     public void deleteRow() {
