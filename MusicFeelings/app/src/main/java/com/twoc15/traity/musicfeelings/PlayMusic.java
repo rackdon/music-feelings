@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.twoc15.traity.musicfeelings.adapters.TagsAdapter;
 import com.twoc15.traity.musicfeelings.helpers.Constants;
+import com.twoc15.traity.musicfeelings.helpers.TagsManagerHelperImp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,10 +34,7 @@ public class PlayMusic extends ActionBarActivity {
 
         lista = (ListView) findViewById(R.id.listView);
 
-        List<String> listaTag = new ArrayList<String>();
-        listaTag.add("rosinante");
-        listaTag.add("dulceinea");
-        listaTag.add("sancho");
+        List<String> listaTag = TagsManagerHelperImp.getInstance().retrieveTags(getApplicationContext());
 
         adapter = new TagsAdapter(getApplicationContext(), R.layout.tag_item, listaTag, false);
         lista.setAdapter(adapter);
