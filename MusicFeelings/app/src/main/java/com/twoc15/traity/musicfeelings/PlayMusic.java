@@ -48,8 +48,9 @@ public class PlayMusic extends ActionBarActivity {
                 Log.d(Constants.STR_LOG_TAG, new StringBuffer("Item is: ").append(position).append(" - ").append(textViewItem.getText()).toString());
 
                 Intent intent = new Intent(MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH);
-                intent.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Genres.ENTRY_CONTENT_TYPE);
+                intent.putExtra(MediaStore.EXTRA_MEDIA_FOCUS, MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE);
                 intent.putExtra(SearchManager.QUERY, tagText.toString());
+
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
