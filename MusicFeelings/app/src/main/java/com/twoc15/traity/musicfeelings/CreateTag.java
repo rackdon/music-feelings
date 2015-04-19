@@ -7,15 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 
+import com.twoc15.traity.musicfeelings.adapters.TagsAdapter;
 import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
+
+import java.io.File;
 
 
 public class CreateTag extends ActionBarActivity
-        implements DirectoryChooserDialog.ChosenDirectoryListener  {
+        implements DirectoryChooserDialog.ChosenDirectoryListener,
+        TagsAdapter.DeleteButtonFunctionality {
     private EditText edTag;
     private DirectoryChooserDialog directoryChooserDialog;
     private String filePath = "";
+    private ListView listView = null;
+    private TagsAdapter adapter = null;
+    private File selectedSong = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +31,16 @@ public class CreateTag extends ActionBarActivity
         setContentView(R.layout.activity_create_tag);
         edTag = (EditText) findViewById(R.id.edTag);
         directoryChooserDialog = new DirectoryChooserDialog(this,this);
+        listView = (ListView) findViewById(R.id.listView);
     }
 
     public void addSongElement (View view) {
         String tag = getTagName();
         directoryChooserDialog.chooseDirectory();
+        String[] songName = {selectedSong.getName()};
+        adapter = new  TagsAdapter(getApplicationContext() , R.layout.tag_item, songName, true);
+        listView.setAdapter(adapter);
+        adapter.setNotifyOnChange(true);
 
     }
 
@@ -37,9 +50,15 @@ public class CreateTag extends ActionBarActivity
     }
 
 
-    public void onChosenDir(String path) {
+    public void onChosenDir(String path, File selectedFile) {
         filePath = path;
+        selectedSong = selectedFile;
         Log.wtf("Create Path", filePath);
+    }
+
+    public void deleteRow() {
+       // adapter.remove();
+        adapter.notifyDataSetChanged();
     }
 
 

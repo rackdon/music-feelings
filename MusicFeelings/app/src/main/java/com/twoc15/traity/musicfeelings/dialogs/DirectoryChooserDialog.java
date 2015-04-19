@@ -47,7 +47,7 @@ public class DirectoryChooserDialog
     //////////////////////////////////////////////////////
     public interface ChosenDirectoryListener
     {
-        public void onChosenDir(String chosenDir);
+        public void onChosenDir(String chosenDir, File selectedFile);
     }
 
     public DirectoryChooserDialog(Context context, ChosenDirectoryListener chosenDirectoryListener)
@@ -138,7 +138,12 @@ public class DirectoryChooserDialog
                 if (m_chosenDirectoryListener != null && selectedFile.getName().endsWith(".pdf"))
                 {
                     // Call registered listener supplied with the chosen directory
-                    m_chosenDirectoryListener.onChosenDir(m_dir);
+                    m_chosenDirectoryListener.onChosenDir(m_dir, selectedFile);
+                }
+                else {
+                    Toast toast = Toast.makeText(m_context,"Selection is not an MP3 file",
+                            Toast.LENGTH_LONG);
+                    toast.show();
                 }
 
             }
