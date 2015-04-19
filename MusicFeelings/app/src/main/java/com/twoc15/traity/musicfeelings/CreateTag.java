@@ -2,6 +2,7 @@ package com.twoc15.traity.musicfeelings;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,16 +11,18 @@ import android.widget.EditText;
 import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
 
 
-public class CreateTag extends ActionBarActivity {
+public class CreateTag extends ActionBarActivity
+        implements DirectoryChooserDialog.ChosenDirectoryListener  {
     private EditText edTag;
     private DirectoryChooserDialog directoryChooserDialog;
+    private String filePath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tag);
         edTag = (EditText) findViewById(R.id.edTag);
-        directoryChooserDialog = new DirectoryChooserDialog(this,null);
+        directoryChooserDialog = new DirectoryChooserDialog(this,this);
     }
 
     public void addSongElement (View view) {
@@ -28,12 +31,15 @@ public class CreateTag extends ActionBarActivity {
 
     }
 
+
     private String getTagName() {
         return edTag.getText().toString();
     }
 
-    private void setSongElement (String song) {
 
+    public void onChosenDir(String path) {
+        filePath = path;
+        Log.wtf("Create Path", filePath);
     }
 
 

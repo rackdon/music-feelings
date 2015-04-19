@@ -2,16 +2,34 @@ package com.twoc15.traity.musicfeelings;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
 
 
-public class ModifyTag extends ActionBarActivity {
+public class ModifyTag extends ActionBarActivity
+        implements DirectoryChooserDialog.ChosenDirectoryListener{
+
+    private DirectoryChooserDialog directoryChooserDialog;
+    private String filePath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_tag);
+    }
+
+    public void addSongElement (View view) {
+        String tag = "";
+        directoryChooserDialog.chooseDirectory();
+
+    }
+
+    public void onChosenDir(String path) {
+        filePath = path;
     }
 
 

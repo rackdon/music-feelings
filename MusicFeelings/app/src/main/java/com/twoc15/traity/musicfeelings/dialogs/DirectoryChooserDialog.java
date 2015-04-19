@@ -14,6 +14,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnKeyListener;
 import android.os.Environment;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +27,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.twoc15.traity.musicfeelings.CreateTag;
+
 public class DirectoryChooserDialog
 {
     private boolean m_isNewFolderEnabled = false;
@@ -37,6 +40,7 @@ public class DirectoryChooserDialog
     private List<String> m_subdirs = null;
     private ChosenDirectoryListener m_chosenDirectoryListener = null;
     private ArrayAdapter<String> m_listAdapter = null;
+    private String mp3Pattern = ".mp3";
 
     //////////////////////////////////////////////////////
     // Callback interface for selected directory
@@ -105,7 +109,7 @@ public class DirectoryChooserDialog
         }
         catch (IOException ioe)
         {
-            return;
+            return ;
         }
 
         m_dir = dir;
@@ -129,12 +133,14 @@ public class DirectoryChooserDialog
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                File selectedFile = new File(m_dir);
                 // Current directory chosen
-                if (m_chosenDirectoryListener != null)
+                if (m_chosenDirectoryListener != null && selectedFile.getName().endsWith(".pdf"))
                 {
                     // Call registered listener supplied with the chosen directory
                     m_chosenDirectoryListener.onChosenDir(m_dir);
                 }
+
             }
         }).setNegativeButton("Cancel", null);
 
