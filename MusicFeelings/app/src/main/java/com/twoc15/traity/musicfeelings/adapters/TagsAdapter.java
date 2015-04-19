@@ -58,10 +58,11 @@ public class TagsAdapter extends ArrayAdapter<String> {
 
     public void showDeleteButton(View convertView, final String item){
         final Button deleteButton = (Button) convertView.findViewById(R.id.deleteButton);
+        deleteButton.setVisibility(View.VISIBLE);
+        deleteButton.setEnabled(true);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteButton.setVisibility(View.VISIBLE);
                 remove(item);
             }
         });

@@ -9,10 +9,10 @@
     tools:context="com.twoc15.traity.musicfeelings.ModifyTag"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edTag"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+    <Spinner
+        android:id="@+id/tagsSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:hint="Name of the Tag"
         android:layout_gravity="center"
         android:gravity="center"
@@ -58,11 +58,21 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:onClick="confirm"/>
 
 </LinearLayout>

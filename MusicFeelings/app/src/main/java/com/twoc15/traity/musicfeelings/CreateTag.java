@@ -2,7 +2,6 @@ package com.twoc15.traity.musicfeelings;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +17,11 @@ import java.util.List;
 
 
 public class CreateTag extends ActionBarActivity
-        implements DirectoryChooserDialog.ChosenDirectoryListener,
-        TagsAdapter.DeleteButtonFunctionality {
+        implements DirectoryChooserDialog.ChosenDirectoryListener {
     private EditText edTag;
     private DirectoryChooserDialog directoryChooserDialog;
     private String filePath = "";
-    private ListView listView = null;
+    private ListView listSongs = null;
     private TagsAdapter adapter = null;
     private File selectedSong = null;
     private List<String> songNames = new ArrayList<String>();
@@ -34,17 +32,19 @@ public class CreateTag extends ActionBarActivity
         setContentView(R.layout.activity_create_tag);
         edTag = (EditText) findViewById(R.id.edTag);
         directoryChooserDialog = new DirectoryChooserDialog(this,this);
-        listView = (ListView) findViewById(R.id.listView);
+        listSongs = (ListView) findViewById(R.id.listView);
         adapter = new  TagsAdapter(getApplicationContext() , R.layout.tag_item, songNames, true);
     }
 
     public void addSongElement (View view) {
         String tag = getTagName();
         directoryChooserDialog.chooseDirectory();
-
-
     }
 
+
+    public void confirm (View view) {
+
+    }
 
     private String getTagName() {
         return edTag.getText().toString();
@@ -55,14 +55,11 @@ public class CreateTag extends ActionBarActivity
         filePath = path;
         selectedSong = selectedFile;
         songNames.add(selectedSong.getName());
-        listView.setAdapter(adapter);
+        listSongs.setAdapter(adapter);
         adapter.setNotifyOnChange(true);
     }
 
-    public void deleteRow() {
-       // adapter.remove();
-        adapter.notifyDataSetChanged();
-    }
+
 
 
     @Override
