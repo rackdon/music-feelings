@@ -73,6 +73,7 @@ public class ModifyTag extends ActionBarActivity
 
     public void confirm (View view) {
         new SongBrowserHelperImp().setPlayList(listTag, songPaths);
+        finish();
     }
 
     public void onChosenDir(String path, File selectedFile) {

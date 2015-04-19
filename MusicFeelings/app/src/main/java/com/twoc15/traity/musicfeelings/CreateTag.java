@@ -2,6 +2,7 @@ package com.twoc15.traity.musicfeelings;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import com.twoc15.traity.musicfeelings.adapters.TagsAdapter;
 import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
 import com.twoc15.traity.musicfeelings.helpers.SongBrowserHelperImp;
+import com.twoc15.traity.musicfeelings.helpers.TagsManagerHelperImp;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,6 +48,11 @@ public class CreateTag extends ActionBarActivity
     public void confirm (View view) {
         String tag = getTagName();
         new SongBrowserHelperImp().setPlayList(tag, songPaths);
+        Log.wtf("Path", String.valueOf(songPaths.size() ));
+        List<String> tagsL = new ArrayList<String>();
+        tagsL.add(tag);
+        TagsManagerHelperImp.getInstance().savedTags(getApplicationContext(), tagsL);
+        finish();
     }
 
     private String getTagName() {
@@ -59,6 +66,7 @@ public class CreateTag extends ActionBarActivity
         songNames.add(selectedSong.getName());
         listSongs.setAdapter(adapter);
         adapter.setNotifyOnChange(true);
+        Log.wtf("Path", path);
     }
 
 

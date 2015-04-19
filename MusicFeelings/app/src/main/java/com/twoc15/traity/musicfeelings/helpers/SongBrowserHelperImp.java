@@ -48,8 +48,10 @@ public class SongBrowserHelperImp implements SongBrowserHelper {
             for(String songSingle : songsList){
                 Mp3File mp3file = new Mp3File(songSingle);
                 ID3v1 id3v1Tag =  mp3file.getId3v1Tag();
+                if(id3v1Tag!=null && tag!=null){
+                    id3v1Tag.setAlbum(tag);
+                }
 
-                id3v1Tag.setAlbum(tag);
 
                 mp3file.save(Environment.getExternalStorageDirectory().getPath() + "/" + mp3file.getFilename());
             }
