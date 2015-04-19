@@ -7,18 +7,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.twoc15.traity.musicfeelings.dialogs.DirectoryChooserDialog;
+
 
 public class CreateTag extends ActionBarActivity {
     private EditText edTag;
+    private DirectoryChooserDialog directoryChooserDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_tag);
         edTag = (EditText) findViewById(R.id.edTag);
+        directoryChooserDialog = new DirectoryChooserDialog(this,null);
     }
 
     public void addSongElement (View view) {
+        String tag = getTagName();
+        directoryChooserDialog.chooseDirectory();
 
     }
 
