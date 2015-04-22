@@ -45,9 +45,9 @@ public class ModifyTag extends ActionBarActivity
         listSongs = (ListView) findViewById(R.id.listView);
         Spinner tagsSpinner = (Spinner) findViewById(R.id.tagsSpinner);
         tagsSpinner.setAdapter(tags);
-        tagsSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        tagsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 listTag = (String) listTags.get(position);
                 thePlayList = new SongBrowserHelperImp().getPlayList(listTag);
                 for (HashMap<String,String> name : thePlayList) {
@@ -60,9 +60,12 @@ public class ModifyTag extends ActionBarActivity
                 directoryChooserDialog =
                         new DirectoryChooserDialog(getApplicationContext(),ModifyTag.this);
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
-
-
 
     }
 
